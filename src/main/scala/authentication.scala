@@ -26,13 +26,13 @@ object Auth {
   private val scopes = List("https://www.googleapis.com/auth/userinfo.email")
 
 
-  def authorize: Credential = {
+  def authorize(user:String): Credential = {
     val flow = new GoogleAuthorizationCodeFlow.Builder(
       httpTransport, jsonFactory,
       Constants.CLIENT_ID, Constants.CLIENT_SECRET,
       scopes.toIterable).build()
 
     new AuthorizationCodeInstalledApp(
-      flow, new LocalServerReceiver()).authorize("user");
+      flow, new LocalServerReceiver()).authorize(user);
   }
 }

@@ -16,5 +16,4 @@ libraryDependencies += "com.google.oauth-client" % "google-oauth-client-jetty" %
 
 libraryDependencies += "com.google.apis" % "google-api-services-fitness" % "v1-rev4-1.19.0"
 
-
-
+libraryDependencies += "com.google.apis" % "google-api-services-storage" % "v1-rev23-1.19.0"

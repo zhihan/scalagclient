@@ -6,6 +6,7 @@ package org.mine.gclient.cloud_storage
 
 import com.google.api.services.storage.Storage
 import com.google.api.client.http.ByteArrayContent
+import com.google.api.client.http.json.JsonHttpContent
 import scala.collection.JavaConversions._
 
 import org.mine.gclient.auth.Auth
@@ -38,25 +39,34 @@ object CloudStorage {
     out.toByteArray()
   }
 
-  /** Insert a byte array as raw data (application/octet-stream type). */
-  def insertBytes(name: String, data: Array[Byte]) {
-    val content = new ByteArrayContent("application/octet-stream", data)
+  private def insert(name:String, content:ByteArrayContent) {
     val req = storage.objects().insert(bucket, null, content).setName(name)
     req.getMediaHttpUploader().setDirectUploadEnabled(true);
     req.execute()
+  }
+
+  /** Insert a byte array as raw data (application/octet-stream type). */
+  def insertBytes(name: String, data: Array[Byte]) {
+    val content = new ByteArrayContent("application/octet-stream", data)
+    insert(name, content)
   }
 
   /** Insert a text file as plain text (plain/text type). */
   def insertBytes(name: String, data: String) {
     val content = new ByteArrayContent("text/plain", data.getBytes())
-    val req = storage.objects().insert(bucket, null, content).setName(name)
-    req.getMediaHttpUploader().setDirectUploadEnabled(true);
-    req.execute()
+    insert(name, content)
   }
 
+  /** Insert a Json object as json type (application/json) */
+  def insertJson(name: String, j: Object) {
+    val content = new ByteArrayContent("application/json",
+      Shared.jsonFactory.toByteArray(j))
+    insert(name, content)
+  }
 
-  def insertJson(name: String, j: String) {
-
+  def getJson[T](name:String, clazz:java.lang.Class[T]): T = {
+    val bytes = getObject(name)
+    Shared.jsonFactory.fromString(new String(bytes), clazz)
   }
 
 }

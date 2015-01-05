@@ -7,6 +7,7 @@ package org.mine.gclient.cloud_storage
 import com.google.api.services.storage.Storage
 import com.google.api.client.http.ByteArrayContent
 import com.google.api.client.http.json.JsonHttpContent
+
 import scala.collection.JavaConversions._
 
 import org.mine.gclient.auth.Auth

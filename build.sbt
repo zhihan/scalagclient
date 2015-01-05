@@ -17,3 +17,7 @@ libraryDependencies += "com.google.oauth-client" % "google-oauth-client-jetty" %
 libraryDependencies += "com.google.apis" % "google-api-services-fitness" % "v1-rev4-1.19.0"
 
 libraryDependencies += "com.google.apis" % "google-api-services-storage" % "v1-rev23-1.19.0"
+
+libraryDependencies += "com.google.apis" % "google-api-services-datastore-protobuf" % "v1beta2-rev1-2.1.0"
+
+libraryDependencies += "com.google.protobuf" % "protobuf-java" % "2.6.1"

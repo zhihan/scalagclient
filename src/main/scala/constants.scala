@@ -22,7 +22,8 @@ object Constants {
 
   val scopes = List("https://www.googleapis.com/auth/userinfo.email",
     "https://www.googleapis.com/auth/fitness.activity.read",
-    "https://www.googleapis.com/auth/devstorage.full_control")
+    "https://www.googleapis.com/auth/devstorage.full_control"
+  )
 
   lazy val user = "zhi.han@gmail.com"
 }
